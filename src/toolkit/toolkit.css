@@ -1,0 +1,107 @@
+.home-toolkit { padding: 12px 0 64px; }
+.toolkit-overview-categories { padding-bottom: 40px; }
+.home-toolkit .platform-section-heading p { margin-top: 8px; max-width: 700px; line-height: 1.6; }
+.toolkit-overview-link { flex-shrink: 0; font-size: 13px; color: #475569; }
+[data-toolkit-category="sentence-packs"] { --toolkit-ink: #147567; --toolkit-soft: #edf8f4; --toolkit-border: #cde7dd; }
+[data-toolkit-category="think-in-english"] { --toolkit-ink: #6352a5; --toolkit-soft: #f3f1fb; --toolkit-border: #ded8f0; }
+.toolkit-category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.toolkit-category, .toolkit-resource-card { min-width: 0; position: relative; background: white; border: 1px solid #dfe5ed; border-radius: 18px; transition: border-color .15s, box-shadow .15s; }
+.toolkit-category:hover, .toolkit-resource-card:hover { border-color: var(--toolkit-border); box-shadow: 0 5px 20px #0f172a06; }
+.toolkit-category:focus-within, .toolkit-resource-card:focus-within { outline: 3px solid var(--toolkit-ink); outline-offset: 4px; }
+.toolkit-category__preview { min-height: 112px; padding: 26px; border-bottom: 1px solid #eef1f5; display: flex; align-items: center; }
+.pattern-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.pattern-chips > span { padding: 8px 12px; background: var(--toolkit-soft); border: 1px solid var(--toolkit-border); border-radius: 9px; font-size: 16px; color: var(--toolkit-ink); font-weight: 550; }
+.thought-model { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.thought-model__step { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.thought-model__block { border: 1px solid var(--toolkit-border); border-radius: 8px; background: var(--toolkit-soft); color: var(--toolkit-ink); padding: 9px 10px; font-size: 10px; font-weight: 650; letter-spacing: .025em; }
+.thought-model__arrow { color: #94a3b8; font-size: 13px; }
+.toolkit-category__body { padding: 26px; }
+.toolkit-count { font-size: 12px; color: var(--toolkit-ink); }
+.toolkit-category h2, .toolkit-category h3 { margin-top: 10px; font-size: 27px; letter-spacing: -.035em; }
+.toolkit-category__body > p { margin-top: 12px; color: #64748b; font-size: 14px; line-height: 1.65; }
+.toolkit-category__body > .toolkit-category__subtitle { color: #334155; font-weight: 550; margin-top: 6px; }
+.toolkit-card-link { display: inline-block; color: var(--toolkit-ink); font-size: 13px; font-weight: 600; margin-top: 24px; }
+.toolkit-card-link::after { content: ''; position: absolute; inset: 0; border-radius: 18px; }
+.toolkit-breadcrumb { flex-wrap: wrap; row-gap: 6px; line-height: 1.6; }
+.toolkit-breadcrumb [aria-current] { overflow-wrap: anywhere; }
+.toolkit-heading { padding: 30px 0 32px; max-width: 830px; }
+.toolkit-heading h1 { margin-top: 12px; overflow-wrap: anywhere; }
+.toolkit-heading > p { font-size: 19px; line-height: 1.6; color: #475569; margin-top: 18px; }
+.toolkit-heading > .toolkit-heading__support { font-size: 14px; color: #64748b; max-width: 700px; margin-top: 10px; }
+.toolkit-library { padding-bottom: 30px; }
+.toolkit-filters { padding: 24px; border: 1px solid #dfe5ed; border-radius: 16px; background: white; }
+.toolkit-filter { padding: 0; border: 0; margin: 0; min-width: 0; }
+.toolkit-filter + .toolkit-filter { margin-top: 20px; }
+.toolkit-filter legend { font-size: 12px; font-weight: 600; color: #475569; margin-bottom: 10px; }
+.toolkit-filter__options { display: flex; flex-wrap: wrap; gap: 8px; }
+.toolkit-filter button { border: 1px solid #e2e8f0; background: white; border-radius: 100px; padding: 8px 15px; font-size: 13px; color: #475569; cursor: pointer; }
+.toolkit-filter button:hover { background: #f8fafc; }
+.toolkit-filter button[aria-pressed="true"] { background: var(--toolkit-soft); color: var(--toolkit-ink); border-color: var(--toolkit-border); font-weight: 600; }
+.toolkit-results { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin: 22px 0 18px; font-size: 12px; color: #64748b; }
+.toolkit-results button { border: 0; background: none; font-size: 12px; color: var(--toolkit-ink); cursor: pointer; padding: 6px 0; }
+.toolkit-resource-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.toolkit-resource-card { padding: 24px; display: flex; flex-direction: column; }
+.toolkit-badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.toolkit-badge { padding: 4px 9px; border-radius: 6px; background: #f1f5f9; font-size: 10px; color: #64748b; line-height: 1.6; }
+.toolkit-badge--accent { color: var(--toolkit-ink); background: var(--toolkit-soft); }
+.toolkit-resource-card h2 { font-size: 20px; letter-spacing: -.025em; line-height: 1.35; margin-top: 18px; }
+.toolkit-resource-card > p { font-size: 13px; color: #64748b; margin-top: 10px; line-height: 1.65; }
+.resource-pattern { font-size: 12px; padding: 12px 0 16px; color: var(--toolkit-ink); margin-top: auto; }
+.resource-model { margin-top: auto; padding: 16px 0; }
+.resource-model .thought-model { gap: 5px; }
+.resource-model .thought-model__step { gap: 5px; }
+.resource-model .thought-model__block { padding: 6px; font-size: 8px; }
+.toolkit-resource-card .toolkit-card-link { margin-top: 8px; }
+.resource-meta { display: flex; gap: 12px; }
+.toolkit-empty { text-align: center; padding: 64px 24px; border: 1px dashed #cbd5e1; border-radius: 18px; }
+.toolkit-empty h2 { font-size: 21px; letter-spacing: -.025em; }
+.toolkit-empty p { color: #64748b; font-size: 14px; margin: 12px 0 24px; }
+.toolkit-article { max-width: 880px; margin-inline: auto; padding-bottom: 24px; }
+.toolkit-template-notice { font-size: 13px; color: #64748b; line-height: 1.7; border-left: 3px solid var(--toolkit-border); padding: 5px 0 5px 15px; margin-bottom: 30px; }
+.toolkit-content-section { min-width: 0; padding: 26px; margin-bottom: 18px; border: 1px solid #dfe5ed; border-radius: 16px; background: white; }
+.toolkit-content-section--lead { border-color: var(--toolkit-border); }
+.toolkit-content-section h2 { font-size: 23px; letter-spacing: -.03em; line-height: 1.4; }
+.toolkit-content-section > p { margin-top: 10px; color: #64748b; font-size: 14px; line-height: 1.7; }
+.toolkit-section-number { display: block; margin-bottom: 10px; color: var(--toolkit-ink); font-size: 11px; }
+.toolkit-example { padding: 18px; background: #f8fafc; border-radius: 10px; font-size: 18px; line-height: 1.6; margin-top: 18px; overflow-wrap: anywhere; }
+.toolkit-example--pattern { background: var(--toolkit-soft); color: var(--toolkit-ink); font-weight: 550; }
+.toolkit-stub-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.toolkit-stub-grid .toolkit-content-section { margin-bottom: 0; }
+.toolkit-stub-grid .toolkit-content-section:last-child { grid-column: 1 / -1; }
+.toolkit-stub-grid h2 { font-size: 20px; }
+.toolkit-big-model { padding: 26px 0 8px; }
+.toolkit-big-model .thought-model__block { padding: 16px 18px; font-size: 12px; }
+.toolkit-comparison { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 18px; }
+.toolkit-comparison > div { padding: 18px; border-radius: 10px; background: #f8fafc; }
+.toolkit-comparison > div:last-child { background: var(--toolkit-soft); }
+.toolkit-comparison h3 { font-size: 13px; color: #334155; }
+.toolkit-comparison p { font-size: 14px; line-height: 1.7; color: #64748b; margin-top: 8px; }
+.toolkit-content-section > .toolkit-stub-note { font-size: 12px; margin-top: 14px; }
+.toolkit-example-list .toolkit-example { margin-top: 12px; }
+.toolkit-takeaway { margin-top: 18px; background: var(--toolkit-soft); border-color: var(--toolkit-border); }
+.toolkit-back { margin-top: 28px; }
+.toolkit-not-found { padding-block: 60px; }
+.toolkit-not-found .button { margin-top: 24px; }
+.platform-header nav { display: flex; flex-wrap: wrap; gap: 18px; }
+@media (max-width: 1000px) {
+  .toolkit-resource-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .toolkit-category__preview { padding: 22px; }
+}
+@media (max-width: 700px) {
+  .toolkit-category-grid, .toolkit-stub-grid, .toolkit-comparison { grid-template-columns: 1fr; }
+  .toolkit-category__body { padding: 22px; }
+  .toolkit-heading { padding: 22px 0 28px; }
+  .toolkit-heading > p { font-size: 17px; }
+  .toolkit-heading h1 { font-size: 34px; }
+  .toolkit-filters, .toolkit-content-section { padding: 20px; }
+  .toolkit-big-model .thought-model__block { padding: 12px; font-size: 10px; }
+  .toolkit-example { font-size: 16px; padding: 14px; }
+  .toolkit-breadcrumb { font-size: 11px; }
+  .home-toolkit { padding-bottom: 42px; }
+  .platform-header { height: auto; min-height: 84px; flex-wrap: wrap; gap: 10px; padding-block: 16px; }
+  .platform-header nav { gap: 18px; font-size: 12px; }
+}
+@media (max-width: 540px) {
+  .toolkit-resource-grid { grid-template-columns: 1fr; }
+  .toolkit-resource-card { padding: 22px; }
+}

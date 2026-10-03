@@ -1,0 +1,76 @@
+.resultPage { background: var(--bg-page); }
+.resultPage :global(.course-header) { min-height: 0; margin-bottom: 8px; }
+.resultPage :global(.course-header__top) { padding-bottom: 8px; }
+.resultPage :global(.course-header__category) { margin: 6px 0; color: var(--text-muted); font-weight: 500; }
+.resultPage :global(.course-subtitle) { margin-top: 4px; max-width: none; }
+.resultPage :global(.course-footer) { margin-top: 16px; }
+.content { display: flex; flex-direction: column; gap: 5px; }
+.content > * { flex: 0 0 auto; }
+.resultPage :global(.main-idea-box) { padding: 6px 12px; background: white; }
+.resultPage :global(.main-idea-box > .label) { display: none; }
+.resultPage :global(.main-idea-box > div) { font-size: 17px; line-height: 1.3; }
+.resultPage :global(.main-idea-box p) { font-size: 13px; font-weight: 400; color: var(--text-secondary); margin-top: 3px; }
+.twoColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.twoColumns > * { min-width: 0; }
+.actionViews { display: grid; grid-template-columns: 1fr 1fr 1.1fr 1.6fr; gap: 8px; }
+.actionViews > div { padding: 6px 8px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; min-width: 0; }
+.actionViews .result, .actionViews .duration { border-color: #FCD34D; background: var(--accent-soft); }
+.viewHeading { display: flex; align-items: center; gap: 5px; font-size: 13px; line-height: 1.3; color: var(--accent-ink); }
+.viewHeading svg { width: 20px; height: 20px; flex: 0 0 auto; }
+.actionViews .result svg { color: #047857; }
+.actionViews p { font-size: 16px; line-height: 1.3; font-weight: 600; margin-top: 5px; }
+.mainPanel { padding: 5px 10px; border: 1px solid #FDE68A; border-radius: var(--radius-md); background: white; }
+.resultPage :global(.section__heading) { margin-bottom: 4px; }
+.resultPage :global(.section__heading h2) { font-size: 16px; line-height: 1.25; }
+.resultPage :global(.example-card) { padding: 0; border: 0; background: transparent; }
+.resultPage :global(.example-card__english) { font-size: 15px; line-height: 1.3; margin-bottom: 3px; }
+.mainPanel > :global(.example-card) :global(.example-card__english) { font-size: 17px; }
+.resultPage :global(.small-note), .note { font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.note { margin-top: 4px; }
+.resultFlow { display: flex; align-items: center; gap: 5px; margin-bottom: 7px; font-size: 13px; line-height: 1.3; }
+.resultFlow :global(.flow-arrow) { width: 22px; height: 20px; }
+.resultFlow strong { display: flex; gap: 4px; align-items: center; color: #047857; }
+.resultFlow strong svg { width: 20px; height: 20px; }
+.fileContrast { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 5px; padding-top: 5px; border-top: 1px solid var(--border); }
+.fileContrast strong { font-size: 13px; line-height: 1.3; color: var(--accent-ink); }
+.fileContrast p { margin-top: 3px; font-size: 14px; font-weight: 600; line-height: 1.3; }
+.fileContrast span { display: block; margin-top: 3px; font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.durationLine { margin-bottom: 5px; color: var(--accent-ink); }
+.durationLine > div { display: flex; justify-content: space-between; font-size: 12px; line-height: 1.3; font-weight: 600; }
+.durationLine svg { width: 100%; height: 17px; color: var(--orange); }
+.forSince { margin-top: 5px; padding-top: 4px; border-top: 1px solid var(--border); }
+.forSince h3 { font-size: 14px; line-height: 1.3; margin-bottom: 3px; }
+.forSince p { font-size: 13px; line-height: 1.3; }
+.forSince strong { color: var(--accent-ink); }
+.forSince .sinceExample { margin-top: 4px; color: var(--accent-ink); font-size: 14px; font-weight: 600; }
+.resultPage :global(.comparison-block) { gap: 6px; grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr); }
+.resultPage :global(.comparison-block > div) { padding: 4px 10px; background: white; border-color: #FDE68A; }
+.resultPage :global(.comparison-block .label) { margin-bottom: 3px; font-size: 13px; letter-spacing: 0; color: var(--accent-ink); }
+.resultPage :global(.comparison-block__arrow) { font-size: 20px; }
+.mainContrast :global(.comparison-block) { grid-template-columns: minmax(0, .8fr) 18px minmax(0, 1.2fr); align-items: stretch; }
+.mainContrast :global(.comparison-block__arrow) { align-self: center; }
+.secondary { padding: 5px 10px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; }
+.secondary :global(.timeline) { padding-top: 0; margin-bottom: 5px; }
+.secondary :global(.timeline__line) { height: 16px; }
+.secondary :global(.timeline__points) { margin-top: -12px; gap: 5px; }
+.secondary :global(.timeline__points li) { gap: 2px; font-size: 12px; line-height: 1.3; }
+.secondary :global(.timeline__dot) { width: 7px; height: 7px; }
+.secondary :global(.timeline__points strong) { color: var(--accent-ink); }
+.secondary :global(.timeline__point--active .timeline__dot) { background: #047857; border-color: #047857; }
+.resultPage :global(.mistake-box), .resultPage :global(.practice-box) { padding: 6px 10px; }
+.resultPage :global(.practice-box) { background: white; }
+.resultPage :global(.mistake-box p + p) { margin-top: 3px; }
+.resultPage :global(.mistake-box__wrong), .resultPage :global(.mistake-box__correct) { font-size: 14px; line-height: 1.3; gap: 6px; }
+.resultPage :global(.mistake-box__wrong > :first-child), .resultPage :global(.mistake-box__correct > :first-child) { font-size: 17px; line-height: 1; flex: 0 0 auto; }
+.resultPage :global(.practice-box__question) { font-size: 13px; line-height: 1.3; }
+.practiceChoice { font-size: 13px; line-height: 1.3; margin: 4px 0; }
+.practiceChoice span { color: var(--text-muted); }
+.answer { color: #047857; font-size: 13px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+.practiceEnglish { color: var(--accent-ink); font-size: 15px; line-height: 1.3; font-weight: 600; }
+.takeaway { padding: 7px 12px; border-left: 3px solid var(--orange); border-radius: var(--radius-sm); background: var(--accent-soft); }
+.takeawayHeading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.takeawayHeading > strong { font-size: 16px; line-height: 1.3; }
+.takeawayHeading .note { margin-top: 0; }
+.compactViews { margin-top: 4px; gap: 10px; }
+.compactViews > div { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.compactViews p { font-size: 13px; font-weight: 500; margin-top: 2px; color: var(--accent-ink); }

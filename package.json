@@ -1,0 +1,41 @@
+{
+  "name": "visual-english-b2-course",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "export:png": "tsx scripts/export.ts png",
+    "export:pdf": "tsx scripts/export.ts pdf",
+    "export:all": "tsx scripts/export.ts all",
+    "check:pages": "tsx scripts/check-pages.ts",
+    "check:viewer": "tsx scripts/check-viewer.ts",
+    "check:progress": "tsx scripts/check-progress-storage.ts && tsx scripts/check-progress.ts",
+    "check:platform": "tsx scripts/check-platform.ts",
+    "check:toolkit": "tsx scripts/check-toolkit.ts"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.0",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "eslint": "^9.39.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
+    "globals": "^16.5.0",
+    "playwright": "^1.56.0",
+    "tsx": "^4.20.0",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vite": "^7.2.0"
+  }
+}

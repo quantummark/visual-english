@@ -1,0 +1,53 @@
+import { beginnerB2Course } from '../courses/beginnerB2/course';
+import { courseCardPath, coursePath } from '../courses/coursePaths';
+import { useEffect, useSyncExternalStore } from 'react';
+import { getLocationSnapshot, getServerLocationSnapshot, navigate, subscribeNavigation } from './navigation';
+import { CardViewer } from '../viewer/CardViewer';
+import { resolveCardRoute, resolveCourseRoute, resolveLegacyCardRoute } from './routes';
+import { PlatformHome } from '../platform/PlatformHome';
+import { CourseOverview } from '../platform/CourseOverview';
+import { ComingSoon } from '../platform/ComingSoon';
+import { getCourseBySlug } from '../courses/courseRegistry';
+import { resolveToolkitRoute } from '../toolkit/toolkitRoutes';
+import { ToolkitPage } from '../toolkit/ToolkitPage';
+
+// Viewer transitions share local state; direct links and exports remain regular routes.
+export function App() {
+  const location = new URL(useSyncExternalStore(subscribeNavigation, getLocationSnapshot, getServerLocationSnapshot));
+  const { pathname, search, hash } = location;
+  const lesson = resolveCardRoute(pathname);
+  const course = resolveCourseRoute(pathname);
+  const toolkit = resolveToolkitRoute(pathname);
+  const legacy = resolveLegacyCardRoute(pathname);
+  const legacyTarget = legacy ? courseCardPath(legacy.course, legacy.card.number) : null;
+  useEffect(() => {
+    if (!legacyTarget) return;
+    navigate(`${legacyTarget}${search}${hash}`, true);
+  }, [legacyTarget, search, hash]);
+  const pageTitle = toolkit ? `${toolkit.title} · Visual English` : lesson ? `${lesson.card.title} · Visual English` : course ? `${course.title} · Visual English` : pathname === '/print' ? 'Visual English B2 Course' : 'Visual English';
+  useEffect(() => {
+    document.title = pageTitle;
+  }, [pageTitle]);
+  const isExport = new URLSearchParams(search).get('export') === '1';
+
+  if (pathname === '/') return <PlatformHome />;
+  if (toolkit) return <ToolkitPage route={toolkit} location={location} />;
+  if (pathname === '/print' || pathname === '/print/') return <>
+    <div className="print-toolbar no-print"><a className="button" href={coursePath(beginnerB2Course)}>← К курсу</a><button className="button button--primary" onClick={() => window.print()}>Печать / сохранить PDF</button></div>
+    <main className="print-stack" aria-label="Все карточки курса">{beginnerB2Course.cards.map((card) => {
+      const Card = card.component;
+      return <Card key={card.id} />;
+    })}</main>
+  </>;
+
+  if (lesson) {
+    const { card, course: currentCourse } = lesson;
+    const Card = card.component;
+    if (isExport) return <main className="export-root"><Card /></main>;
+    return <CardViewer key={currentCourse.id} course={currentCourse} card={card} navigate={navigate}><Card /></CardViewer>;
+  }
+  if (course) return course.status === 'available' ? <CourseOverview course={course} /> : <ComingSoon course={course} />;
+  const isCard = pathname.includes('/cards/') || pathname.startsWith('/cards/');
+  const parent = getCourseBySlug(pathname.split('/')[2] ?? '');
+  return <main className="not-found"><h1>{isCard ? 'Карточка не найдена' : 'Курс не найден'}</h1><p>Выберите курс и карточку, чтобы продолжить обучение.</p><a className="button" href={parent ? coursePath(parent) : '/'}>{parent ? 'К курсу →' : 'Все курсы →'}</a></main>;
+}

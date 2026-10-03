@@ -1,0 +1,10 @@
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  html, body, #root { margin: 0; padding: 0; width: 210mm; background: white; }
+  * { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .no-print, .workspace-toolbar, .print-toolbar { display: none !important; }
+  .workspace, .preview-host, .preview-frame, .preview-page, .print-stack, .export-root { display: block; position: static; width: 210mm !important; height: auto !important; min-height: 0; margin: 0; padding: 0; transform: none !important; overflow: visible; }
+  .a4-page { margin: 0; box-shadow: none; break-inside: avoid; break-after: page; }
+  .a4-page:last-child { break-after: auto; }
+  .course-header, .course-footer, .section { break-inside: avoid; }
+}

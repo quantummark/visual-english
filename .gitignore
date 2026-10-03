@@ -1,0 +1,11 @@
+node_modules/
+dist/
+exports/
+output/
+tmp/
+.playwright-cli/
+.env
+.env.*
+!.env.example
+*.local
+*.log

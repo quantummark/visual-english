@@ -1,0 +1,56 @@
+.meaningPage { background: var(--bg-page); }
+.meaningPage :global(.course-header) { min-height: 0; margin-bottom: 8px; }
+.meaningPage :global(.course-header__top) { padding-bottom: 8px; }
+.meaningPage :global(.course-header__category) { margin: 6px 0; color: var(--text-muted); font-weight: 500; }
+.meaningPage :global(.course-subtitle) { margin-top: 4px; max-width: none; }
+.meaningPage :global(.course-footer) { margin-top: 16px; }
+.content { display: flex; flex-direction: column; gap: 4px; }
+.content > * { flex: 0 0 auto; }
+.meaningPage :global(.main-idea-box) { padding: 5px 12px; background: white; }
+.meaningPage :global(.main-idea-box > .label) { display: none; }
+.meaningPage :global(.main-idea-box > div) { font-size: 17px; line-height: 1.3; }
+.meaningPage :global(.main-idea-box p) { font-size: 13px; line-height: 1.3; font-weight: 400; color: var(--text-secondary); margin-top: 3px; }
+.meaningPage :global(.section__heading) { margin-bottom: 4px; }
+.meaningPage :global(.section__heading h2) { font-size: 16px; line-height: 1.25; }
+.modules { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.module { min-width: 0; padding: 3px 10px; border: 1px solid #DDD6FE; border-top: 3px solid var(--purple); border-radius: var(--radius-md); background: white; }
+.module:nth-child(2) { border-top-color: #A78BFA; }
+.module:nth-child(3) { background: #FAF9FF; }
+.module:nth-child(4) { background: var(--accent-soft); }
+.module h3 { display: flex; align-items: center; gap: 7px; font-size: 16px; line-height: 1.25; margin-bottom: 3px; }
+.module h3 > span { display: grid; place-items: center; flex: 0 0 auto; width: 20px; height: 20px; border: 1px solid #C4B5FD; border-radius: 50%; font-size: 11px; color: var(--accent-ink); background: var(--accent-soft); }
+.before, .english { font-size: 14px; line-height: 1.3; font-weight: 500; }
+.before > span { color: var(--text-secondary); font-size: 13px; }
+.module > :global(.flow-arrow--down) { width: 10px; height: 8px; margin: 3px 0 3px 6px; }
+.mainExample { font-size: 17px; line-height: 1.3; font-weight: 600; }
+.mainExample b, .english b { color: var(--accent-ink); }
+.note { font-size: 13px; line-height: 1.3; margin-top: 3px; color: var(--text-secondary); }
+.detail { padding-top: 3px; margin-top: 3px; border-top: 1px solid var(--border); }
+.detail + .english, .detail .note + .english { margin-top: 5px; }
+.detail .english + .english { margin-top: 2px; }
+.pattern { color: var(--accent-ink); font-size: 13px; line-height: 1.3; font-weight: 600; }
+.hope { padding-top: 3px; margin-top: 3px; border-top: 1px solid #DDD6FE; }
+.hope strong { font-size: 13px; line-height: 1.3; color: var(--accent-ink); }
+.hope strong span { color: var(--text-secondary); font-weight: 400; }
+.hope .english { margin-top: 3px; }
+.relativeWords { display: flex; flex-wrap: wrap; gap: 3px 8px; margin-top: 5px; font-size: 13px; line-height: 1.3; }
+.relativeWords b { color: var(--accent-ink); }
+.english del { color: var(--text-muted); }
+.mistakes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.mistakes > * { min-width: 0; }
+.mistakes :global(.section__heading h2) { font-size: 15px; }
+.meaningPage :global(.mistake-box), .meaningPage :global(.practice-box) { padding: 5px 8px; }
+.meaningPage :global(.practice-box) { background: white; }
+.meaningPage :global(.mistake-box p + p) { margin-top: 3px; }
+.meaningPage :global(.mistake-box__wrong), .meaningPage :global(.mistake-box__correct) { font-size: 14px; line-height: 1.3; gap: 5px; align-items: flex-start; }
+.meaningPage :global(.mistake-box .small-note), .meaningPage :global(.practice-box__question) { font-size: 13px; line-height: 1.3; }
+.practiceFlow { display: grid; grid-template-columns: 190px 22px minmax(0, 1fr); gap: 10px; align-items: center; margin-top: 4px; }
+.practiceFlow :global(.flow-arrow) { width: 22px; height: 18px; }
+.answer { font-size: 15px; line-height: 1.3; color: #047857; font-weight: 500; }
+.takeaway { padding: 6px 12px; border-left: 3px solid var(--purple); border-radius: var(--radius-sm); background: var(--accent-soft); }
+.takeawayHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.takeawayHeading strong { font-size: 16px; line-height: 1.3; }
+.takeawayHeading p { font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.fourPaths { display: grid; grid-template-columns: 1fr 1.25fr 1fr 1.15fr; gap: 10px; margin-top: 5px; font-size: 13px; line-height: 1.3; }
+.fourPaths strong { color: var(--accent-ink); }
+.fourPaths p { font-size: 14px; margin-top: 2px; }

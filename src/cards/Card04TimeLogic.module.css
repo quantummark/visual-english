@@ -1,0 +1,79 @@
+.timePage { background: var(--bg-page); }
+.timePage :global(.course-header) { min-height: 0; margin-bottom: 8px; }
+.timePage :global(.course-header__top) { padding-bottom: 8px; }
+.timePage :global(.course-header__category) { margin: 6px 0; color: var(--text-muted); font-weight: 500; }
+.timePage :global(.course-subtitle) { margin-top: 4px; max-width: none; }
+.timePage :global(.course-footer) { margin-top: 16px; }
+.content { display: flex; flex-direction: column; gap: 5px; }
+.content > * { flex: 0 0 auto; }
+.timePage :global(.main-idea-box) { padding: 5px 12px; background: white; }
+.timePage :global(.main-idea-box > .label) { display: none; }
+.timePage :global(.main-idea-box > div) { font-size: 17px; line-height: 1.3; }
+.timePage :global(.main-idea-box p) { margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--text-secondary); }
+.twoColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.twoColumns > * { min-width: 0; }
+.timeModel { padding: 7px 12px; border: 1px solid #FCD34D; border-top: 3px solid var(--orange); border-radius: var(--radius-md); background: white; }
+.timeModel h2 { color: var(--accent-ink); font-size: 19px; line-height: 1.3; }
+.timeModel h2 span { color: var(--text-primary); }
+.timeline { margin-left: 91px; }
+.timeline :global(.timeline) { padding-top: 7px; }
+.timeline :global(.timeline__points) { gap: 8px; margin-top: -16px; }
+.timeline :global(.timeline__points li) { gap: 5px; font-size: 13px; line-height: 1.3; }
+.timeline :global(.timeline__points strong) { color: var(--accent-ink); }
+.timeline :global(.timeline__dot) { border-color: var(--orange); }
+.timeline :global(.timeline__point--active .timeline__dot) { background: var(--orange); }
+.modeLabels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 5px 0; }
+.modeLabels > div { display: flex; gap: 8px; align-items: center; }
+.modeLabels svg { width: 24px; height: 24px; flex: 0 0 auto; color: var(--accent-ink); }
+.modeLabels strong { font-size: 13px; line-height: 1.3; color: var(--accent-ink); }
+.modeLabels span { font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.mapRow { display: grid; grid-template-columns: 83px repeat(3, minmax(0, 1fr)); gap: 8px; align-items: stretch; }
+.mapRow + .mapRow { margin-top: 7px; }
+.rowLabel { display: flex; gap: 5px; align-items: center; font-size: 11px; color: var(--accent-ink); }
+.rowLabel svg { width: 20px; height: 20px; flex: 0 0 auto; }
+.timePage .mapRow :global(.example-card) { padding: 5px 8px; background: var(--accent-soft); border: 1px solid #FDE68A; }
+.timePage .processRow :global(.example-card) { background: white; border: 1px dashed #F59E0B; box-shadow: inset 0 -3px 0 var(--accent-soft); }
+.timePage .mapRow :global(.example-card__english) { font-size: 18px; }
+.timePage :global(.example-card) { padding: 0; border: 0; background: transparent; }
+.timePage :global(.example-card__english) { font-size: 15px; line-height: 1.35; margin-bottom: 3px; }
+.timePage :global(.small-note), .note { font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.note { margin-top: 3px; }
+.timePage :global(.section__heading) { margin-bottom: 4px; }
+.timePage :global(.section__heading h2) { font-size: 16px; line-height: 1.25; }
+.timePage :global(.comparison-block) { gap: 6px; grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr); }
+.timePage :global(.comparison-block > div) { padding: 7px 10px; background: white; }
+.timePage :global(.comparison-block .label) { font-size: 13px; letter-spacing: 0; color: var(--accent-ink); margin-bottom: 4px; }
+.timePage :global(.comparison-block__arrow) { font-size: 20px; }
+.mainContrast :global(.example-card__english) { font-size: 17px; }
+.mainContrast :global(.comparison-block > div) { border-color: #FDE68A; }
+.meaningNote { margin-top: 4px; font-size: 13px; line-height: 1.3; color: var(--text-secondary); }
+.secondary { padding: 5px 10px; border: 1px solid var(--border); border-radius: var(--radius-md); background: white; }
+.secondary :global(.example-card) { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--border); }
+.secondary :global(.example-card__english) { margin-bottom: 0; }
+.inlineExample { font-size: 13px; line-height: 1.35; color: var(--text-secondary); }
+.inlineExample strong { font-size: 15px; font-weight: 600; color: var(--accent-ink); margin-right: 5px; }
+.clues { padding: 0; }
+.clues .twoColumns p { font-size: 13px; line-height: 1.3; }
+.clues strong { color: var(--accent-ink); font-weight: 600; }
+.clues span { display: block; margin-top: 2px; }
+.timePage :global(.mistake-box), .timePage :global(.practice-box) { padding: 6px 10px; }
+.timePage :global(.practice-box) { background: white; }
+.timePage :global(.mistake-box p + p) { margin-top: 3px; }
+.timePage :global(.mistake-box__wrong), .timePage :global(.mistake-box__correct) { font-size: 15px; line-height: 1.3; gap: 6px; }
+.timePage :global(.mistake-box__wrong > :first-child), .timePage :global(.mistake-box__correct > :first-child) { line-height: 1; }
+.timePage :global(.practice-box__question) { font-size: 13px; line-height: 1.3; }
+.choices { font-size: 15px; line-height: 1.3; margin: 4px 0; }
+.choices span { font-size: 13px; color: var(--text-secondary); padding: 0 7px; }
+.answer { font-size: 13px; line-height: 1.3; padding-top: 4px; border-top: 1px solid var(--border); }
+.answer strong { color: #047857; margin-right: 6px; }
+.takeaway { padding: 7px 12px; border-left: 3px solid var(--orange); border-radius: var(--radius-sm); background: var(--accent-soft); font-size: 13px; line-height: 1.3; }
+.takeawayHeading { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.takeawayHeading > strong { font-size: 15px; }
+.takeawayHeading p { font-size: 12px; }
+.takeaway > p { margin-top: 3px; }
+.takeaway b { margin-left: 4px; }
+.memoryModel { margin-top: 5px; font-size: 15px; font-weight: 700; color: var(--accent-ink); }
+.memoryModel > span { padding: 0 12px; color: var(--text-muted); }
+.memoryLine { display: flex; align-items: center; gap: 6px; color: var(--text-secondary); }
+.memoryLine svg { width: 18px; height: 18px; color: var(--accent-ink); }
+.memoryLine svg:nth-of-type(2) { margin-left: 12px; }

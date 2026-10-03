@@ -1,0 +1,43 @@
+.course-progress { display: flex; flex-direction: column; gap: 5px; min-width: 100px; color: #64748b; }
+.course-progress__label { font-size: 12px; line-height: 1.3; }
+.course-progress__track { height: 4px; overflow: hidden; border-radius: 8px; background: #e2e8f0; }
+.course-progress__track > span { display: block; height: 100%; background: #64748b; border-radius: inherit; transition: width .15s ease; }
+.course-progress--compact { gap: 3px; }
+.course-progress--compact .course-progress__label { font-size: 10px; }
+.course-progress--compact .course-progress__track { height: 3px; }
+.card-completion { flex-shrink: 0; border-color: #e2e8f0; color: #64748b; font-size: 11px; }
+.card-completion[data-completed="true"] { color: #047857; border-color: #bbd8cc; background: #f2faf6; }
+.card-completion > span:first-child { font-size: 16px; }
+.viewer-course-progress { display: flex; flex-direction: column; gap: 3px; }
+.viewer-thumbnail__completed { position: absolute; top: 3px; right: 3px; width: 17px; height: 17px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: #047857; box-shadow: 0 0 0 1px #c8dfd4; font-size: 12px; font-weight: 700; pointer-events: none; }
+.viewer-sheet .course-progress { margin: 0 5px 14px; }
+.gallery-progress { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: -6px 0 24px; }
+.gallery-progress__status { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 12px; color: #64748b; }
+.gallery-progress .course-progress { width: 140px; }
+.progress-reset-link { min-height: 36px; padding: 5px 0; border: 0; background: none; color: #64748b; cursor: pointer; font-size: 12px; white-space: nowrap; }
+.progress-reset-link:hover { color: #263246; text-decoration: underline; }
+.progress-reset-dialog { width: calc(100% - 40px); max-width: 440px; padding: 26px; border: 1px solid #e2e8f0; border-radius: 16px; color: #263246; box-shadow: 0 16px 60px #0f172a20; }
+.progress-reset-dialog::backdrop { background: #0f172a66; }
+.progress-reset-dialog h2 { font-size: 19px; line-height: 1.3; }
+.progress-reset-dialog p { margin-top: 14px; color: #64748b; font-size: 14px; }
+.progress-reset-dialog__actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 24px; }
+@media (max-width: 1250px) {
+  .viewer-toolbar .card-completion__text { display: none; }
+}
+@media (max-width: 1150px) and (min-width: 761px) {
+  .viewer-course-progress .course-progress { min-width: 64px; width: 64px; }
+  .viewer-course-progress .course-progress__label { display: none; }
+}
+@media (max-width: 760px) {
+  .viewer-course-progress { display: none; }
+  .viewer-toolbar__title { gap: 6px; }
+  .viewer-toolbar .card-completion { min-width: 36px; padding-inline: 6px; }
+  .gallery-progress { align-items: start; gap: 12px; }
+  .gallery-progress__status { flex-direction: column; align-items: start; gap: 10px; }
+}
+@media (max-width: 360px) {
+  .viewer-toolbar__back > a span { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .course-progress__track > span { transition: none; }
+}
