@@ -98,7 +98,7 @@
   .toolkit-example { font-size: 16px; padding: 14px; }
   .toolkit-breadcrumb { font-size: 11px; }
   .home-toolkit { padding-bottom: 42px; }
-  .platform-header { height: auto; min-height: 84px; flex-wrap: wrap; gap: 10px; padding-block: 16px; }
+  .platform-header { height: auto; min-height: 84px; flex-wrap: nowrap; gap: 10px; padding-block: 16px; }
   .platform-header nav { gap: 18px; font-size: 12px; }
 }
 @media (max-width: 540px) {

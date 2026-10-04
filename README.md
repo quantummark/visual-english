@@ -1,21 +1,21 @@
-# Visual English
+# Visual English Lab
 
-Визуальная платформа изучения английского на React, TypeScript и Vite. Курс Beginner → B2 содержит 14 готовых учебных карточек A4, просмотр с масштабированием и Focus Mode, локальный прогресс и экспорт в PNG/PDF. B2 → C1 представлен страницей «Скоро».
+Visual English Lab is a free visual English learning project designed to help learners understand how English works through clear visual explanations, structured courses, practical examples, and additional practice tools. Built with React, TypeScript, and Vite, it runs entirely in the browser without accounts or a backend.
 
-English Toolkit — отдельная библиотека: 12 Sentence Packs и 8 Think in English. Доступны фильтры и страницы с короткими примерами и предварительной структурой; полный контент Toolkit ещё не написан. Прогресс курса хранится в localStorage этого браузера; Toolkit не использует систему прогресса. Серверная часть и аккаунты не требуются.
+The Beginner → B2 course contains 14 completed A4 learning cards, a viewer with zoom and Focus Mode, local progress tracking, and PNG/PDF export. B2 → C1 currently has a coming-soon page.
 
-## Установка и запуск
+English Toolkit is a separate library with 12 Sentence Packs and 8 Think in English resources. Filters and individual pages are implemented, but the pages contain short samples and preliminary structures; full Toolkit content is still pending. Course progress is stored in this browser's localStorage. Toolkit does not track progress.
 
-Нужен Node.js 22.12+ (или 20.19+).
+## Setup and local development
+
+Requires Node.js 22.12+ (or 20.19+).
 
 ```bash
 npm ci
-npx playwright install chromium
 npm run dev
 ```
 
-Откройте URL, который напечатает Vite (обычно http://localhost:5173).
-На Windows при блокировке PowerShell-скриптов используйте `npm.cmd` и `npx.cmd`.
+Open the URL printed by Vite (usually `http://localhost:5173`). On Windows, use `npm.cmd` and `npx.cmd` if PowerShell blocks scripts.
 
 ```bash
 npm run typecheck
@@ -24,108 +24,117 @@ npm run build
 npm run preview
 ```
 
-## Страницы
+Browser checks and exports also require Chromium:
 
-- `/` — каталог курсов и раздел «Больше практики».
-- `/courses/beginner-b2` — описание курса, 4 этапа, 14 карточек, продолжение обучения и сброс прогресса с подтверждением.
-- `/courses/beginner-b2/cards/01` … `/courses/beginner-b2/cards/14` — viewer карточек с масштабированием, Fit, Focus Mode, filmstrip и мобильным выбором карточек.
-- `/cards/01` … `/cards/14` — совместимые старые адреса: перенаправляют на адреса текущего курса, сохраняя query-параметры.
-- `/courses/b2-c1` — страница будущего курса «Скоро».
-- `/toolkit` — обзор English Toolkit.
-- `/toolkit/sentence-packs` — библиотека наборов фраз, фильтры по уровню и теме; `/:slug` открывает отдельный набор.
-- `/toolkit/think-in-english` — библиотека визуальных статей, фильтр по категории; `/:slug` открывает отдельный материал.
-- `/print` — все 14 карточек, каждая на отдельном печатном листе.
-- `/courses/beginner-b2/cards/01?export=1` — служебный просмотр без масштабирования и панели.
-
-Навигация использует обычные ссылки. Для production-хостинга настройте SPA fallback на `index.html`, чтобы прямые ссылки на карточки работали. Vite dev/preview уже поддерживает это.
-
-## Структура
-
-```text
-src/
-  app/           App, маршруты и навигация
-  platform/      каталог и страницы курсов
-  courses/       типы, реестр курсов, этапы и ссылки на компоненты карточек
-  cards/         14 готовых компонентов A4
-  viewer/        просмотр, масштабирование, filmstrip и мобильный picker
-  progress/      localStorage, явное завершение карточек и сброс курса
-  toolkit/       реестры ресурсов, фильтры и веб-шаблоны материалов
-  components/    A4Page, PagePreview и строительные блоки карточек
-  data/          courseCards.ts — исходные метаданные карточек Beginner → B2
-  styles/        tokens, global, components, print
-  types/         CourseCard, CardId, Accent
-scripts/
-  browser.ts     запуск локального приложения и Chromium, освобождение ресурсов
-  export.ts      PNG и PDF
-  page-quality.ts  проверка границ страницы и пересечения с footer
-  check-pages.ts   проверка маршрутов, ссылок, мобильного preview и print
+```bash
+npx playwright install chromium
 ```
 
-## PNG
+## Pages
+
+- `/` — course catalog and additional practice.
+- `/courses/beginner-b2` — course overview, four stages, 14 cards, resume learning, and progress reset with confirmation.
+- `/courses/beginner-b2/cards/01` … `/courses/beginner-b2/cards/14` — card viewer with zoom, Fit, Focus Mode, a filmstrip, and a mobile card picker.
+- `/cards/01` … `/cards/14` — legacy URLs that redirect to current course routes while preserving query parameters.
+- `/courses/b2-c1` — coming-soon course page.
+- `/toolkit` — English Toolkit overview.
+- `/toolkit/sentence-packs` — phrase packs with level and topic filters; `/:slug` opens an individual pack.
+- `/toolkit/think-in-english` — visual articles with a category filter; `/:slug` opens an individual resource.
+- `/print` — all 14 cards, each on a separate printed page.
+- `/courses/beginner-b2/cards/01?export=1` — export view without zoom or toolbars.
+
+Navigation uses regular links. Configure an SPA fallback to `index.html` in production so direct card links work. Vite dev and preview already support this.
+
+## Project structure
+
+```text
+public/brand/logo/  Temporary header SVG, kept unchanged for later replacement
+src/
+  app/             App, routes, and navigation
+  platform/        Course catalog and overview pages
+  courses/         Types, course registry, stages, and card component references
+  cards/           14 completed A4 card components
+  viewer/          Card viewer, zoom, filmstrip, and mobile picker
+  progress/        localStorage, explicit card completion, and course reset
+  toolkit/         Resource registries, filters, and web page templates
+  components/      A4Page, PagePreview, and reusable card building blocks
+  data/            courseCards.ts: original Beginner → B2 card metadata
+  styles/          Tokens, global styles, components, and print styles
+  types/           CourseCard, CardId, and Accent
+scripts/
+  browser.ts       Local app and Chromium startup and cleanup
+  export.ts        PNG and PDF export
+  page-quality.ts  Page bounds and footer overlap checks
+  check-pages.ts   Routes, links, mobile preview, and print checks
+```
+
+The temporary header logo is `public/brand/logo/visual-english-lab-header.svg`. Replace this asset when the final brand version is ready.
+
+## PNG export
 
 ```bash
 npm run export:png
 ```
 
-Скрипт самостоятельно запускает Vite, открывает каждую карточку и снимает только `[data-a4-page]`. CSS-размер страницы — 210 × 297 mm; Chromium при deviceScaleFactor 2 сохраняет PNG **1588 × 2246 px**. Размер каждого файла проверяется по PNG header. При переполнении карточки экспорт завершится с ошибкой.
+The script starts Vite, opens each card, and captures only `[data-a4-page]`. Pages measure 210 × 297 mm in CSS; Chromium at deviceScaleFactor 2 produces **1588 × 2246 px** PNGs. Each file's dimensions are verified from its PNG header. Export fails if a card overflows.
 
-Файлы: `exports/png/01-master-map.png` … `exports/png/14-practice-system.png`. Имена берутся из метаданных, существующие файлы с тем же именем перезаписываются.
+Output: `exports/png/01-master-map.png` … `exports/png/14-practice-system.png`. Filenames come from card metadata; existing files with the same names are overwritten.
 
-## PDF
+## PDF export
 
 ```bash
 npm run export:pdf
 npm run export:all
 ```
 
-PDF: `exports/Visual-English-B2-Course.pdf`. Экспорт использует `/print`, физический A4, нулевые поля, сохранение фона и цветов, без панели браузера и теней. Текст остаётся выделяемым HTML-текстом в PDF; схемы SVG остаются векторными. `export:all` создаёт оба формата за один запуск браузера.
+Output: `exports/Visual-English-B2-Course.pdf`. Export uses `/print`, physical A4 pages, zero margins, preserved backgrounds and colors, and no browser toolbar or shadows. HTML text remains selectable and SVG diagrams remain vector graphics. `export:all` creates both formats in one browser session.
 
-Можно использовать уже запущенное приложение:
+To use an already running app:
 
 ```powershell
 $env:EXPORT_BASE_URL = 'http://localhost:5173'
 npm run export:all
 ```
 
-Опционально `PLAYWRIGHT_CHROMIUM_EXECUTABLE` задаёт путь к совместимому Chromium. Обычно это не требуется: используйте `npx playwright install chromium`.
+Optionally, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE` to a compatible Chromium executable. This is normally unnecessary after `npx playwright install chromium`.
 
-## Дизайн-система
+## Design system
 
-`tokens.css` содержит цвета, контрастные цвета текста для каждого акцента, spacing, radii, shadows, font sizes и системный sans-serif stack. Внешние шрифты, Tailwind, canvas и UI frameworks не используются.
+`tokens.css` defines colors, contrasting text colors for each accent, spacing, radii, shadows, font sizes, and the system sans-serif stack. The project uses no external fonts, Tailwind, canvas, or UI frameworks.
 
-Цвета: 01–03 blue; 04–05 orange; 06–07 green; 08 teal; 09–12 purple; 13–14 cyan. Красный предназначен для ошибок, жёлтый — для подсказок. `data-accent` задаёт локальный акцент и светлый фон. Текст использует более тёмный `--accent-ink`, чтобы яркие декоративные цвета не снижали читаемость.
+Card accents: 01–03 blue; 04–05 orange; 06–07 green; 08 teal; 09–12 purple; 13–14 cyan. Red indicates errors and yellow highlights hints. `data-accent` sets the local accent and light background. Text uses the darker `--accent-ink` for readability.
 
-`A4Page` всегда имеет физический размер 210 × 297 mm и поля 15 mm. `PagePreview` через ResizeObserver масштабирует всю страницу по ширине и высоте окна. Внутренний layout фиксирован: ни одна mobile media query не меняет композицию карточки. Header/footer одинаковы на всех страницах, footer закреплён общей flex-композицией. Переполнение намеренно не скрывается: проверка должна обнаружить ошибку, а не обрезать содержание.
+`A4Page` always measures 210 × 297 mm with 15 mm margins. `PagePreview` uses ResizeObserver to scale the entire page to the available width and height. The internal layout stays fixed; mobile media queries do not change a card's composition. Card headers and footers are consistent, with footers anchored by the shared flex layout. Overflow is deliberately visible so checks can detect it.
 
-`.page-grid` — 12 колонок. По умолчанию блок занимает всю ширину. Классы `span-4`, `span-6`, `span-8`, `span-12` задают ширину блока; `.two-column` — две равные колонки. Размеры шрифта на A4 задавайте через tokens, а не viewport units.
+`.page-grid` has 12 columns. Blocks span the full width by default; `span-4`, `span-6`, `span-8`, and `span-12` control their width. `.two-column` creates two equal columns. Use tokens for A4 font sizes rather than viewport units.
 
-Компоненты доступны из `src/components/index.ts`:
+Components are exported from `src/components/index.ts`:
 
-| Компонент | Назначение / основные props |
+| Component | Main props / purpose |
 | --- | --- |
 | A4Page | `cardId`, `accent`, `children` |
 | CourseHeader | `card`, optional `secondaryLabel` |
-| CourseFooter | `card`, навигация из metadata |
+| CourseFooter | `card`, navigation from metadata |
 | Section | `title`, optional `label`, `className`, `children` |
 | MainIdeaBox | `children`, optional `label`, `accent` |
 | ExampleCard | `english`, `explanation`, optional `accent` |
-| ComparisonBlock | `left`, `right`, optional подписи |
+| ComparisonBlock | `left`, `right`, optional labels |
 | MistakeBox | `wrong`, `correct`, optional `explanation` |
-| PracticeBox | `question`, optional `options`, `children`, статический `answer` |
-| StepFlow | `steps` — массив HTML/React блоков |
+| PracticeBox | `question`, optional `options`, `children`, static `answer` |
+| StepFlow | `steps`: an array of HTML/React blocks |
 | DecisionTree | `question`, `branches: { id, label, content }[]` |
 | Timeline | `points: { id, label, note? }[]`, optional `activeId` |
 | FlowArrow | `direction: right / down`, SVG |
 | StageBadge | `stage`, optional `label` |
 | Label | `children`, `tone: neutral / accent / hint` |
-| IconBadge | `label`, SVG в `children`, optional `accent` |
+| IconBadge | `label`, SVG in `children`, optional `accent` |
 
-FlowArrow, StepFlow и Timeline содержат SVG без растеризации текста. DecisionTree использует HTML и CSS для простых ветвлений. Длинные диаграммы нужно проектировать под доступную ширину A4; автоматического сжатия шрифта нет. SVG-иконки передавайте без лишнего доступного имени: его уже задаёт IconBadge.
+FlowArrow, StepFlow, and Timeline use SVG without rasterizing text. DecisionTree uses HTML and CSS for simple branches. Design longer diagrams to fit A4 width; fonts do not shrink automatically. Pass SVG icons without redundant accessible names, since IconBadge already supplies the label.
 
-## Как редактировать карточку
+## Editing a card
 
-1. Откройте её отдельный файл, например `src/cards/Card01MasterMap.tsx`.
-2. Редактируйте существующую композицию, сохранив оболочку:
+1. Open its component, for example `src/cards/Card01MasterMap.tsx`.
+2. Edit the composition while preserving its shell:
 
 ```tsx
 import { A4Page, CourseHeader, CourseFooter, Section } from '../components';
@@ -137,7 +146,7 @@ export function Card01MasterMap() {
     <A4Page cardId={card.id} accent={card.accent}>
       <CourseHeader card={card} />
       <div className="page-content page-grid">
-        <Section title="Название блока">Содержание по спецификации</Section>
+        <Section title="Section title">Learning content</Section>
       </div>
       <CourseFooter card={card} />
     </A4Page>
@@ -145,13 +154,13 @@ export function Card01MasterMap() {
 }
 ```
 
-3. Метаданные карточки находятся в `courseCards.ts`. Не дублируйте названия, номера, акценты или slug внутри компонентов.
-4. Используйте готовые блоки и общий CSS. Для уникальной схемы добавьте локальный CSS Module; не меняйте общую основу ради одного layout.
-5. Проверьте `npm run check:pages` и `npm run export:all`. Не уменьшайте текст и не обрезайте страницу, чтобы скрыть переполнение.
+3. Keep titles, numbers, accents, and slugs in `courseCards.ts`; do not duplicate them in components.
+4. Reuse existing blocks and shared CSS. For a unique diagram, add a local CSS Module rather than changing the shared layout for one card.
+5. Run `npm run check:pages` and `npm run export:all`. Do not reduce text or crop pages to hide overflow.
 
-Beginner → B2 содержит 14 страниц. Новые курсы регистрируются отдельно в `src/courses/courseRegistry.ts`; viewer получает карточки и прогресс из текущего курса. Toolkit имеет собственные реестры и веб-страницы и не входит в экспорт курса.
+Beginner → B2 has 14 pages. Register new courses separately in `src/courses/courseRegistry.ts`; the viewer reads cards and progress from the current course. Toolkit uses its own registries and web pages and is excluded from course exports.
 
-## Проверка в браузере
+## Browser validation
 
 ```bash
 npm run check:pages
@@ -161,6 +170,6 @@ npm run check:platform
 npm run check:toolkit
 ```
 
-Проверяются все маршруты, header titles, ссылки предыдущая/следующая, A4 ratio, переполнение, gallery, поведение back, мобильное вписывание без изменения внутренних размеров и print CSS. Скриншоты сохраняются в `output/playwright/`. После добавления учебного контента также просмотрите PNG и PDF визуально: автоматическая проверка границ не заменяет редакторскую проверку композиции.
+Checks cover routes, header titles, previous/next links, A4 aspect ratio, overflow, the gallery, back navigation, mobile fitting without changes to internal dimensions, and print CSS. Screenshots are saved to `output/playwright/`. After adding learning content, also review PNG and PDF exports visually; bounds checks do not replace an editorial layout review.
 
-`node_modules`, `dist`, `exports`, `output`, `tmp`, `.playwright-cli` и локальные `.env` исключены из Git. Исходники и `package-lock.json` хранятся в репозитории; экспорты создаются локально командами выше.
+`node_modules`, `dist`, `exports`, `output`, `tmp`, `.playwright-cli`, and local `.env` files are excluded from Git. Source files and `package-lock.json` are tracked; exports are generated locally with the commands above.

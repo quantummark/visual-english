@@ -20,7 +20,7 @@ export function CourseOverview({ course }: { course: AvailableCourse }) {
   const resume = getCourseResume(course, progress.progress);
   const [resetOpen, setResetOpen] = useState(false);
   return <PlatformLayout>
-    <nav className="platform-breadcrumb" aria-label="Путь к курсу"><a href="/">Visual English</a><span aria-hidden="true">/</span><span aria-current="page">{course.title}</span></nav>
+    <nav className="platform-breadcrumb" aria-label="Путь к курсу"><a href="/">Visual English Lab</a><span aria-hidden="true">/</span><span aria-current="page">{course.title}</span></nav>
     <header className="course-overview__header"><span className="platform-eyebrow">{course.name}</span><h1>{course.title}</h1><p>От базовой структуры предложения до уверенной разговорной речи.</p><div className="catalog-course__meta">{course.cards.length} карточек <span>·</span> {course.stages.length} этапа</div>
       <div className="course-overview__progress gallery-progress"><CourseProgress completed={progress.completedCount} total={course.cards.length} /><div className="course-overview__actions"><a className="button button--primary" href={resume.href}>{resume.detailedLabel} →</a><a className="button" href="/print">Печать / PDF ↗</a></div>{resume.hasProgress && <button className="progress-reset-link" onClick={() => setResetOpen(true)}>Сбросить прогресс</button>}</div>
     </header>

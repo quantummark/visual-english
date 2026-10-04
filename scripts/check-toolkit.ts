@@ -70,7 +70,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   for (const [category, resources] of [['sentence-packs', sentencePacks], ['think-in-english', thinkInEnglishResources]] as const) {
     for (const resource of resources) {
       await open(toolkitResourcePath(category, resource.slug));
-      assert.equal(await page.title(), `${resource.title} · Visual English`);
+      assert.equal(await page.title(), `${resource.title} · Visual English Lab`);
       assert.equal(await page.getByRole('heading', { level: 1 }).textContent(), resource.title);
       assert.equal(await page.locator('.toolkit-template-notice').count(), 1);
       assert.equal(await page.locator('[role="progressbar"], .card-viewer, [data-a4-page], .card-completion').count(), 0);

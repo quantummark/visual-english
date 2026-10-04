@@ -24,7 +24,7 @@ export function App() {
     if (!legacyTarget) return;
     navigate(`${legacyTarget}${search}${hash}`, true);
   }, [legacyTarget, search, hash]);
-  const pageTitle = toolkit ? `${toolkit.title} · Visual English` : lesson ? `${lesson.card.title} · Visual English` : course ? `${course.title} · Visual English` : pathname === '/print' ? 'Visual English B2 Course' : 'Visual English';
+  const pageTitle = toolkit ? `${toolkit.title} · Visual English Lab` : lesson ? `${lesson.card.title} · Visual English Lab` : course ? `${course.title} · Visual English Lab` : pathname === '/print' ? 'Beginner → B2 · Visual English Lab' : 'Visual English Lab';
   useEffect(() => {
     document.title = pageTitle;
   }, [pageTitle]);

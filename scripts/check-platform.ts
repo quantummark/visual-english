@@ -18,7 +18,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   }, { key: PROGRESS_STORAGE_KEY, courseId: BEGINNER_B2_COURSE_ID, completed, last });
   await mkdir('output/playwright', { recursive: true });
   await open('/');
-  assert.equal(await page.title(), 'Visual English');
+  assert.equal(await page.title(), 'Visual English Lab');
   assert.equal(await page.locator('.catalog-course').count(), 2);
   assert.equal(await page.locator('.catalog-course--soon [role="progressbar"]').count(), 0);
   assert.equal(await store(), null, 'Catalog must not create progress');

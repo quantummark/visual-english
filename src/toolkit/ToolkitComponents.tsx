@@ -10,7 +10,7 @@ import './toolkit.css';
 export function ToolkitBreadcrumb({ category, title }: { category?: ToolkitCategoryId; title?: string }) {
   const metadata = toolkitCategories.find((item) => item.id === category);
   return <nav className="platform-breadcrumb toolkit-breadcrumb" aria-label="Хлебные крошки">
-    <a href="/">Visual English</a><span aria-hidden="true">/</span>
+    <a href="/">Visual English Lab</a><span aria-hidden="true">/</span>
     {category ? <><a href="/toolkit">Больше практики</a><span aria-hidden="true">/</span>{title ? <><a href={toolkitCategoryPath(category)}>{metadata?.title}</a><span aria-hidden="true">/</span><span aria-current="page">{title}</span></> : <span aria-current="page">{metadata?.title}</span>}</> : <span aria-current="page">English Toolkit</span>}
   </nav>;
 }

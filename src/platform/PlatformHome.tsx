@@ -30,7 +30,7 @@ export function PlatformHome() {
   const progress = useCourseProgress(primary.id, primary.cardIds);
   const resume = getCourseResume(primary, progress.progress);
   return <PlatformLayout>
-    <section className="platform-hero"><span className="platform-eyebrow">Смысл · схемы · практика</span><h1>Visual English</h1><p className="platform-hero__subtitle">Пойми систему английского через визуальные схемы и реальные примеры.</p><p className="platform-hero__support">От простого предложения до уверенной разговорной речи.</p><a className="button button--primary" href={coursePath(primary)}>{resume.complete ? 'Повторить курс' : resume.hasProgress ? 'Продолжить обучение' : 'Начать обучение'} →</a></section>
+    <section className="platform-hero"><span className="platform-eyebrow">Смысл · схемы · практика</span><h1>Увидь, как работает английский</h1><p className="platform-hero__subtitle">Пойми систему английского через визуальные схемы и реальные примеры.</p><p className="platform-hero__support">От простого предложения до уверенной разговорной речи.</p><a className="button button--primary" href={coursePath(primary)}>{resume.complete ? 'Повторить курс' : resume.hasProgress ? 'Продолжить обучение' : 'Начать обучение'} →</a></section>
     <section id="courses" className="platform-catalog" aria-labelledby="catalog-title"><div className="platform-section-heading"><h2 id="catalog-title">Курсы</h2><p>Выбери свой следующий шаг.</p></div><div className="catalog-grid">{available.map((course) => <AvailableCourseCard key={course.id} course={course} />)}{getComingSoonCourses().map((course) => <ComingSoonCard key={course.id} course={course} />)}</div></section>
     <HomeToolkitSection />
   </PlatformLayout>;
