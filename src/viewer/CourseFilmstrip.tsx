@@ -2,9 +2,9 @@ import { memo, useEffect, useRef, useState } from 'react';
 import { PagePreview } from '../components/A4Page/PagePreview';
 import { formatCardNumber } from '../data/courseCards';
 import { courseCardPath } from '../courses/coursePaths';
-import type { AvailableCourse, CourseLesson } from '../courses/courseTypes';
+import type { Course, CourseLesson } from '../courses/courseTypes';
 
-const FilmstripThumbnail = memo(function FilmstripThumbnail({ course, card, active, completed }: { course: AvailableCourse; card: CourseLesson; active: boolean; completed: boolean }) {
+const FilmstripThumbnail = memo(function FilmstripThumbnail({ course, card, active, completed }: { course: Course; card: CourseLesson; active: boolean; completed: boolean }) {
   const Card = card.component;
   return <div className="viewer-thumbnail" data-accent={card.accent} data-active={active}>
     <div className="viewer-thumbnail__page" aria-hidden="true" inert><PagePreview><Card /></PagePreview></div>
@@ -13,7 +13,7 @@ const FilmstripThumbnail = memo(function FilmstripThumbnail({ course, card, acti
   </div>;
 });
 
-export function CourseFilmstrip({ course, card, collapsed, toggle, completedCardIds, sheet = false }: { course: AvailableCourse; card: CourseLesson; collapsed: boolean; toggle: () => void; completedCardIds: readonly number[]; sheet?: boolean }) {
+export function CourseFilmstrip({ course, card, collapsed, toggle, completedCardIds, sheet = false }: { course: Course; card: CourseLesson; collapsed: boolean; toggle: () => void; completedCardIds: readonly number[]; sheet?: boolean }) {
   const strip = useRef<HTMLDivElement>(null);
   const [edges, setEdges] = useState({ start: true, end: false });
   useEffect(() => {

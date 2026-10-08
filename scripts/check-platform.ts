@@ -10,6 +10,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
   const overview = `/courses/${BEGINNER_B2_COURSE_ID}`;
+  const catalogCourse = page.locator('.catalog-course').filter({ has: page.getByRole('heading', { name: 'Beginner → B2', exact: true }) });
   const cardPath = (number: number) => `${overview}/cards/${String(number).padStart(2, '0')}`;
   const open = (path: string) => page.goto(new URL(path, baseURL).href);
   const store = () => page.evaluate((key) => localStorage.getItem(key), PROGRESS_STORAGE_KEY);
@@ -20,10 +21,11 @@ await withCourseBrowser(async (browser, baseURL) => {
   await open('/');
   assert.equal(await page.title(), 'Visual English Lab');
   assert.equal(await page.locator('.catalog-course').count(), 2);
-  assert.equal(await page.locator('.catalog-course--soon [role="progressbar"]').count(), 0);
+  assert.equal(await page.locator('.catalog-course--soon').count(), 0);
   assert.equal(await store(), null, 'Catalog must not create progress');
-  await page.locator('.catalog-course:not(.catalog-course--soon)').getByRole('link', { name: 'Начать курс →', exact: true }).click();
+  await catalogCourse.getByRole('link', { name: 'Начать курс →', exact: true }).click();
   assert.equal(new URL(page.url()).pathname, overview);
+  await page.locator('.course-stage').first().waitFor();
   assert.equal(await page.locator('.course-stage').count(), 4);
   assert.equal(await page.locator('.lesson-tile').count(), courseCardIds.length);
   assert.deepEqual(await page.locator('.course-stage').evaluateAll((stages) => stages.map((stage) => stage.querySelectorAll('.lesson-tile').length)), [3, 7, 2, 2]);
@@ -35,7 +37,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   await seed([1, 2, 3], 6);
   const oldProgress = await store();
   await open('/');
-  assert.equal(await page.locator('.catalog-course [role="progressbar"]').getAttribute('aria-valuenow'), '3');
+  assert.equal(await catalogCourse.getByRole('progressbar').getAttribute('aria-valuenow'), '3');
   assert.equal(await page.getByRole('button', { name: 'Сбросить прогресс' }).count(), 0);
   assert.equal(await store(), oldProgress, '2A storage must survive the new home');
   await open(overview);
@@ -56,7 +58,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   assert.equal(await page.locator('.lesson-studied').count(), 0);
   assert.equal(await page.getByRole('link', { name: 'Начать курс →', exact: true }).getAttribute('href'), cardPath(1));
   await seed(courseCardIds, 14); await open('/');
-  assert.equal(await page.locator('.catalog-course [role="progressbar"]').getAttribute('aria-valuenow'), String(courseCardIds.length));
+  assert.equal(await catalogCourse.getByRole('progressbar').getAttribute('aria-valuenow'), String(courseCardIds.length));
   await open(overview);
   assert.equal(await page.locator('.lesson-studied').count(), courseCardIds.length);
   assert.equal(await page.getByRole('link', { name: 'Повторить курс →', exact: true }).getAttribute('href'), cardPath(1));
@@ -72,7 +74,10 @@ await withCourseBrowser(async (browser, baseURL) => {
   assert.equal(await page.locator('[data-a4-page]').count(), 1);
   await open('/courses/b2-c1');
   assert.equal(await page.getByRole('heading', { name: 'B2 → C1', exact: true }).count(), 1);
-  assert.equal(await page.locator('[role="progressbar"], [data-a4-page]').count(), 0);
+  assert.equal(await page.locator('.course-stage').count(), 4);
+  assert.equal(await page.locator('.lesson-tile').count(), 14);
+  assert.equal(await page.locator('.course-overview__progress [role="progressbar"]').getAttribute('aria-valuenow'), '0');
+  assert.equal(await page.getByRole('link', { name: 'Начать курс →', exact: true }).getAttribute('href'), '/courses/b2-c1/cards/01');
   assert.equal(await page.evaluate((key) => Object.hasOwn(JSON.parse(localStorage.getItem(key) ?? '{}').courses ?? {}, 'b2-c1'), PROGRESS_STORAGE_KEY), false);
   for (const [path, title] of [['/courses/unknown', 'Курс не найден'], [cardPath(99), 'Карточка не найдена']]) {
     await open(path); assert.equal(await page.getByRole('heading', { level: 1 }).textContent(), title);
@@ -80,7 +85,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   await seed([1, 2, 3], 6);
   for (const viewport of [{ width: 1920, height: 1080 }, { width: 1440, height: 900 }, { width: 820, height: 1180 }, { width: 390, height: 844 }]) {
     await page.setViewportSize(viewport);
-    for (const [path, name] of [['/', 'home'], [overview, 'course'], [cardPath(7), 'viewer'], ['/courses/b2-c1', 'soon']]) {
+    for (const [path, name] of [['/', 'home'], [overview, 'course'], [cardPath(7), 'viewer'], ['/courses/b2-c1', 'advanced']]) {
       await open(path);
       await page.evaluate(async () => { await document.fonts.ready; });
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${name} overflows at ${viewport.width}`);
@@ -95,5 +100,5 @@ await withCourseBrowser(async (browser, baseURL) => {
   await open('/print'); assert.equal(await page.locator('[data-a4-page]').count(), courseCardIds.length); assert.equal(await page.locator('.platform-header, .course-stage, .card-completion, [role="progressbar"]').count(), 0);
   assert.deepEqual(errors, []);
   await context.close();
-  console.log('OK platform: catalog, four stages, canonical/legacy routes, refresh/history, 2A progress compatibility, continue/review/reset, coming soon, responsive pages, export isolation');
+  console.log('OK platform: two available courses, four stages, canonical/legacy routes, refresh/history, 2A progress compatibility, continue/review/reset, responsive pages, export isolation');
 });

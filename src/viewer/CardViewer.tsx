@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { MouseEvent, ReactNode } from 'react';
-import type { AvailableCourse, CourseLesson } from '../courses/courseTypes';
+import type { Course, CourseLesson } from '../courses/courseTypes';
 import { courseCardPath } from '../courses/coursePaths';
 import { getNextCard, getPreviousCard } from '../courses/courseRegistry';
 import { useCourseProgress } from '../progress/useCourseProgress';
@@ -12,7 +12,7 @@ import { MobileCardSheet } from './MobileCardSheet';
 import { PAGE_HEIGHT, PAGE_WIDTH, useViewerZoom } from './useViewerZoom';
 import './viewer.css';
 
-export function CardViewer({ course, card, navigate, children }: { course: AvailableCourse; card: CourseLesson; navigate: (path: string) => void; children: ReactNode }) {
+export function CardViewer({ course, card, navigate, children }: { course: Course; card: CourseLesson; navigate: (path: string) => void; children: ReactNode }) {
   const { viewport, zoom, fitMode, setZoom, step, fit, preserveZoom } = useViewerZoom();
   const progress = useCourseProgress(course.id, course.cardIds);
   const { setLastViewed } = progress;

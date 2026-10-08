@@ -28,7 +28,7 @@
 .platform-thumbnail { width: 100%; height: 100%; aspect-ratio: 210 / 297; }
 .platform-thumbnail .preview-host { height: 100%; margin: 0; }
 .catalog-course__body { padding: 26px; }
-.catalog-course h3 { font-size: 28px; letter-spacing: -.035em; line-height: 1.3; margin-top: 7px; }
+.catalog-course__body > h3 { font-size: 28px; letter-spacing: -.035em; line-height: 1.3; margin-top: 7px; }
 .catalog-course__body > p { font-size: 14px; line-height: 1.65; margin-top: 12px; color: #64748b; max-width: 430px; }
 .catalog-course__meta { display: flex; align-items: center; gap: 10px; color: #64748b; font-size: 12px; margin-top: 20px; }
 .catalog-course .course-progress { margin-top: 22px; width: 180px; }
@@ -53,6 +53,11 @@
 .course-overview__intro { margin: 38px 0 48px; padding-top: 26px; border-top: 1px solid #e2e8f0; }
 .course-overview__intro > p:first-child { max-width: 830px; font-size: 14px; color: #64748b; line-height: 1.8; }
 .course-principle { display: inline-block; margin-top: 20px; padding: 10px 16px; border: 1px solid #dbe6f6; border-radius: 9px; background: #f0f5fd; color: #3f5d86; font-size: 14px; font-weight: 600; }
+.course-overview__header > .course-development-note { font-size: 13px; }
+.course-outcomes { margin-top: 24px; color: var(--text-secondary); font-size: 13px; }
+.course-outcomes h2 { font-size: 15px; color: var(--text-primary); }
+.course-outcomes ul { margin: 12px 0 0; padding-left: 20px; line-height: 1.8; }
+.course-stage__header .course-stage__supporting-title { font-weight: 600; color: var(--accent-ink); }
 .course-stage { margin-bottom: 46px; }
 .course-stage__header { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 20px; }
 .course-stage__header .platform-eyebrow { color: var(--accent-ink); }

@@ -13,9 +13,11 @@
     "export:pdf": "tsx scripts/export.ts pdf",
     "export:all": "tsx scripts/export.ts all",
     "check:pages": "tsx scripts/check-pages.ts",
+    "check:print": "tsx scripts/check-course-print.ts",
     "check:viewer": "tsx scripts/check-viewer.ts",
     "check:progress": "tsx scripts/check-progress-storage.ts && tsx scripts/check-progress.ts",
     "check:platform": "tsx scripts/check-platform.ts",
+    "check:b2-c1": "tsx scripts/check-b2-c1.ts",
     "check:toolkit": "tsx scripts/check-toolkit.ts"
   },
   "dependencies": {

@@ -12,7 +12,7 @@ export function resolveCardRoute(pathname: string) {
   if (legacy) return legacy;
   const match = /^\/courses\/([^/]+)\/cards\/(\d+)\/?$/.exec(pathname);
   const course = match && getCourseBySlug(match[1]);
-  if (!match || !course || course.status !== 'available') return undefined;
+  if (!match || !course) return undefined;
   const card = getCardByNumber(course, Number(match[2]));
   return card ? { course, card } : undefined;
 }
@@ -20,4 +20,12 @@ export function resolveCardRoute(pathname: string) {
 export function resolveCourseRoute(pathname: string) {
   const match = /^\/courses\/([^/]+)\/?$/.exec(pathname);
   return match ? getCourseBySlug(match[1]) : undefined;
+}
+
+export function resolveCoursePrintRoute(pathname: string) {
+  // Preserve the original public print URL as an alias of the same renderer.
+  if (/^\/print\/?$/.test(pathname)) return beginnerB2Course;
+  const match = /^\/courses\/([^/]+)\/print\/?$/.exec(pathname);
+  const course = match ? getCourseBySlug(match[1]) : undefined;
+  return course?.status === 'available' ? course : undefined;
 }

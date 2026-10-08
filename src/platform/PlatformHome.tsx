@@ -21,7 +21,7 @@ function AvailableCourseCard({ course }: { course: AvailableCourse }) {
 }
 
 function ComingSoonCard({ course }: { course: ComingSoonCourse }) {
-  return <article className="catalog-course catalog-course--soon" data-accent={course.accent}><div className="catalog-soon-visual" aria-hidden="true"><span>Следующий уровень</span><strong>{course.levelFrom} → {course.levelTo}</strong></div><div className="catalog-course__body"><span className="platform-eyebrow">{course.name} <span className="course-soon">Скоро</span></span><h3>{course.title}</h3><p>{course.description}</p><a className="catalog-course__link catalog-soon-link" href={coursePath(course)}>О курсе →</a></div></article>;
+  return <article className="catalog-course catalog-course--soon" data-accent={course.accent}><div className="catalog-soon-visual" aria-hidden="true"><span>Следующий уровень</span><strong>{course.levelFrom} → {course.levelTo}</strong></div><div className="catalog-course__body"><span className="platform-eyebrow">{course.name} <span className="course-soon">Скоро</span></span><h3>{course.title}</h3><p>{course.description}</p>{course.cards.length > 0 && <div className="catalog-course__meta">{course.cards.length} карточек <span>·</span> {course.stages.length} этапа</div>}<a className="catalog-course__link catalog-soon-link" href={coursePath(course)}>О курсе →</a></div></article>;
 }
 
 export function PlatformHome() {

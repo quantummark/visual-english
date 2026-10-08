@@ -6,5 +6,9 @@
   .workspace, .preview-host, .preview-frame, .preview-page, .print-stack, .export-root { display: block; position: static; width: 210mm !important; height: auto !important; min-height: 0; margin: 0; padding: 0; transform: none !important; overflow: visible; }
   .a4-page { margin: 0; box-shadow: none; break-inside: avoid; break-after: page; }
   .a4-page:last-child { break-after: auto; }
+  .print-stack { gap: 0; }
+  .print-stack > .print-card { width: 210mm; margin: 0; padding: 0; break-inside: avoid; page-break-inside: avoid; break-after: page; page-break-after: always; }
+  .print-stack > .print-card:last-child { break-after: auto; page-break-after: auto; }
+  .print-card > .a4-page { break-after: auto; }
   .course-header, .course-footer, .section { break-inside: avoid; }
 }

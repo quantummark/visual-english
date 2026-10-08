@@ -13,6 +13,7 @@ export interface CourseLesson extends Omit<CourseCard, 'id' | 'previous' | 'next
 export interface CourseStage {
   id: string;
   title: string;
+  supportingTitle?: string;
   description: string;
   accent: Accent;
   cardNumbers: readonly number[];
@@ -29,18 +30,26 @@ interface CourseInfo {
   accent: Accent;
 }
 
-export interface AvailableCourse extends CourseInfo {
-  status: 'available';
+interface CourseStructure extends CourseInfo {
   cards: readonly CourseLesson[];
   cardIds: readonly number[];
   stages: readonly CourseStage[];
   previewCardNumbers: readonly number[];
+  overview: {
+    description: string;
+    introduction: string;
+    principle: string;
+    outcomes?: readonly string[];
+  };
+  printPath?: string;
 }
 
-export interface ComingSoonCourse extends CourseInfo {
+export interface AvailableCourse extends CourseStructure {
+  status: 'available';
+}
+
+export interface ComingSoonCourse extends CourseStructure {
   status: 'coming-soon';
-  cards: readonly [];
-  stages: readonly [];
 }
 
 export type Course = AvailableCourse | ComingSoonCourse;

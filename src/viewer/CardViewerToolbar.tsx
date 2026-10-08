@@ -1,4 +1,4 @@
-import type { AvailableCourse, CourseLesson } from '../courses/courseTypes';
+import type { Course, CourseLesson } from '../courses/courseTypes';
 import { coursePath } from '../courses/coursePaths';
 import { formatCardNumber } from '../data/courseCards';
 import type { FitMode } from './useViewerZoom';
@@ -6,7 +6,7 @@ import { CourseProgress } from '../progress/CourseProgress';
 import { CardCompletionButton } from '../progress/CardCompletionButton';
 
 interface Props {
-  course: AvailableCourse;
+  course: Course;
   card: CourseLesson;
   zoom: number;
   fitMode: FitMode;
@@ -22,7 +22,7 @@ interface Props {
 export function CardViewerToolbar({ course, card, zoom, fitMode, setZoom, step, fit, focus, completed, completedCount, toggleCompleted }: Props) {
   return <header className="viewer-toolbar no-print">
     <div className="viewer-toolbar__back"><a className="viewer-button" href={coursePath(course)} aria-label="К курсу">← <span>К курсу</span></a><div className="viewer-course-progress"><a className="viewer-course-label" href={coursePath(course)}>{course.title}</a><CourseProgress completed={completedCount} total={course.cards.length} compact /></div></div>
-    <div className="viewer-toolbar__title" aria-live="polite"><strong>{formatCardNumber(card.number)} / {course.cards.length}</strong><span>{card.title}</span><CardCompletionButton completed={completed} onToggle={toggleCompleted} /></div>
+    <div className="viewer-toolbar__title" aria-live="polite"><strong>{formatCardNumber(card.number)} / {course.cards.length}{course.status === 'coming-soon' && ' · В разработке'}</strong><span>{card.title}</span><CardCompletionButton completed={completed} onToggle={toggleCompleted} /></div>
     <div className="viewer-toolbar__actions">
       <div className="viewer-zoom">
         <select className="viewer-fit" aria-label="Подогнать карточку" value="" title={fitMode === 'page' ? 'По странице' : fitMode === 'width' ? 'По ширине' : 'Выбрать масштаб'} onChange={(event) => fit(event.target.value as FitMode)}>
@@ -36,7 +36,7 @@ export function CardViewerToolbar({ course, card, zoom, fitMode, setZoom, step, 
         <button className="viewer-button" onClick={() => step(1)} disabled={zoom >= 2} aria-label="Увеличить масштаб">+</button>
       </div>
       <button className="viewer-button" onClick={focus} aria-label="Режим фокуса" title="Режим фокуса">⛶ <span>Focus</span></button>
-      <a className="viewer-button viewer-pdf" href="/print">Печать / PDF ↗</a>
+      {course.printPath && <a className="viewer-button viewer-pdf" href={course.printPath}>Печать / PDF ↗</a>}
     </div>
   </header>;
 }

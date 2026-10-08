@@ -1,12 +1,12 @@
 import assert from 'node:assert/strict';
-import type { Page } from 'playwright';
+import type { Locator, Page } from 'playwright';
 
 export async function waitForCourse(page: Page) {
   await page.locator('[data-a4-page]').first().waitFor();
   await page.evaluate(async () => { await document.fonts.ready; });
 }
 
-export async function assertPageQuality(page: Page, expectedCount: number) {
+export async function assertPageQuality(page: Page | Locator, expectedCount: number) {
   assert.equal(await page.locator('[data-a4-page]').count(), expectedCount, 'Unexpected A4 page count');
   const failures = await page.locator('[data-a4-page]').evaluateAll((pages) => pages.flatMap((element) => {
     const page = element as HTMLElement;

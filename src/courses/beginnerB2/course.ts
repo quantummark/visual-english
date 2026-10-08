@@ -1,5 +1,6 @@
 import { BEGINNER_B2_COURSE_ID, courseCards } from '../../data/courseCards';
 import type { AvailableCourse } from '../courseTypes';
+import { coursePrintPath } from '../coursePaths';
 import { cardComponents } from './cardComponents';
 import { beginnerB2Stages } from './stages';
 
@@ -16,4 +17,10 @@ export const beginnerB2Course: AvailableCourse = {
   description: 'Пошаговая визуальная система: от структуры предложения до живой разговорной речи.',
   status: 'available', accent: 'blue', cards, cardIds: cards.map((card) => card.id),
   stages: beginnerB2Stages, previewCardNumbers: [1, 4, 13],
+  overview: {
+    description: 'От базовой структуры предложения до уверенной разговорной речи.',
+    introduction: 'Этот курс объясняет английский через смысл и визуальные модели, а не через зубрёжку терминов. Ты научишься собирать предложения, показывать время и намерение, соединять идеи, использовать B2-конструкции, понимать живую речь и тренировать разговорный английский.',
+    principle: 'Сначала смысл → потом английская форма.',
+  },
+  printPath: coursePrintPath({ slug: BEGINNER_B2_COURSE_ID }),
 };

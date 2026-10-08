@@ -1,9 +1,9 @@
 import { formatCardNumber } from '../data/courseCards';
 import { courseCardPath } from '../courses/coursePaths';
 import { getNextCard, getPreviousCard } from '../courses/courseRegistry';
-import type { AvailableCourse, CourseLesson } from '../courses/courseTypes';
+import type { Course, CourseLesson } from '../courses/courseTypes';
 
-export function ViewerNavigation({ course, card, variant, openSheet }: { course: AvailableCourse; card: CourseLesson; variant: 'side' | 'mobile'; openSheet?: () => void }) {
+export function ViewerNavigation({ course, card, variant, openSheet }: { course: Course; card: CourseLesson; variant: 'side' | 'mobile'; openSheet?: () => void }) {
   const previous = getPreviousCard(course, card);
   const next = getNextCard(course, card);
   return <nav className={`viewer-navigation viewer-navigation--${variant} no-print`} aria-label={variant === 'side' ? 'Боковая навигация' : 'Навигация по курсу'}>

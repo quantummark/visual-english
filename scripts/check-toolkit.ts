@@ -20,7 +20,10 @@ await withCourseBrowser(async (browser, baseURL) => {
   const page = await context.newPage();
   const errors: string[] = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  const open = (path: string) => page.goto(new URL(path, baseURL).href);
+  const open = async (path: string) => {
+    await page.goto(new URL(path, baseURL).href);
+    await page.getByRole('heading', { level: 1 }).waitFor();
+  };
   const storage = () => page.evaluate(() => JSON.stringify(Object.fromEntries(Object.keys(localStorage).map((key) => [key, localStorage.getItem(key)]))));
   const visibleSlugs = () => page.locator('[data-resource-slug]').evaluateAll((cards) => cards.map((card) => card.getAttribute('data-resource-slug')));
   await mkdir('output/playwright', { recursive: true });
@@ -30,6 +33,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   assert.deepEqual(await page.locator('.home-toolkit .toolkit-count').allTextContents(), ['12 наборов', '8 материалов']);
   await page.locator('.home-toolkit').getByRole('link', { name: 'Открыть наборы →', exact: true }).click();
   assert.equal(new URL(page.url()).pathname, '/toolkit/sentence-packs');
+  await page.locator('[data-resource-slug]').first().waitFor();
   assert.equal(await page.locator('[data-resource-slug]').count(), 12);
   const level = page.getByRole('group', { name: 'Уровень', exact: true });
   const topic = page.getByRole('group', { name: 'Тема', exact: true });
@@ -43,6 +47,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   await page.goForward(); assert.equal(await page.locator('[data-resource-slug]').count(), 3);
   await page.getByRole('link', { name: 'Открыть Meetings', exact: true }).click();
   assert.equal(new URL(page.url()).pathname, '/toolkit/sentence-packs/meetings');
+  await page.locator('.toolkit-content-section h2').first().waitFor();
   assert.deepEqual(await page.locator('.toolkit-content-section h2').allTextContents(), ['Core Patterns', 'Ready Sentences', 'Change the Pattern', 'Mini Dialogue', 'Practice']);
   await page.getByRole('link', { name: '← Все Sentence Packs', exact: true }).click();
   await level.getByRole('button', { name: 'B2–C1', exact: true }).click();
@@ -61,6 +66,7 @@ await withCourseBrowser(async (browser, baseURL) => {
   await page.keyboard.press('Enter');
   await page.waitForURL(new URL('/toolkit/think-in-english/thinking-in-blocks', baseURL).href);
   assert.equal(new URL(page.url()).pathname, '/toolkit/think-in-english/thinking-in-blocks');
+  await page.locator('.toolkit-big-model').waitFor();
   assert.equal(await page.locator('.toolkit-big-model .thought-model__block').count(), 4);
   assert.equal(await page.locator('.toolkit-example-list .toolkit-example').count(), 2);
   assert.equal(await storage(), '{}', 'Browsing Toolkit must not create progress');

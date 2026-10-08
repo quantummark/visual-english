@@ -1,15 +1,15 @@
-import { beginnerB2Course } from '../courses/beginnerB2/course';
 import { courseCardPath, coursePath } from '../courses/coursePaths';
 import { useEffect, useSyncExternalStore } from 'react';
 import { getLocationSnapshot, getServerLocationSnapshot, navigate, subscribeNavigation } from './navigation';
 import { CardViewer } from '../viewer/CardViewer';
-import { resolveCardRoute, resolveCourseRoute, resolveLegacyCardRoute } from './routes';
+import { resolveCardRoute, resolveCourseRoute, resolveCoursePrintRoute, resolveLegacyCardRoute } from './routes';
 import { PlatformHome } from '../platform/PlatformHome';
 import { CourseOverview } from '../platform/CourseOverview';
 import { ComingSoon } from '../platform/ComingSoon';
 import { getCourseBySlug } from '../courses/courseRegistry';
 import { resolveToolkitRoute } from '../toolkit/toolkitRoutes';
 import { ToolkitPage } from '../toolkit/ToolkitPage';
+import { CoursePrint } from '../platform/CoursePrint';
 
 // Viewer transitions share local state; direct links and exports remain regular routes.
 export function App() {
@@ -17,6 +17,7 @@ export function App() {
   const { pathname, search, hash } = location;
   const lesson = resolveCardRoute(pathname);
   const course = resolveCourseRoute(pathname);
+  const printCourse = resolveCoursePrintRoute(pathname);
   const toolkit = resolveToolkitRoute(pathname);
   const legacy = resolveLegacyCardRoute(pathname);
   const legacyTarget = legacy ? courseCardPath(legacy.course, legacy.card.number) : null;
@@ -24,7 +25,7 @@ export function App() {
     if (!legacyTarget) return;
     navigate(`${legacyTarget}${search}${hash}`, true);
   }, [legacyTarget, search, hash]);
-  const pageTitle = toolkit ? `${toolkit.title} · Visual English Lab` : lesson ? `${lesson.card.title} · Visual English Lab` : course ? `${course.title} · Visual English Lab` : pathname === '/print' ? 'Beginner → B2 · Visual English Lab' : 'Visual English Lab';
+  const pageTitle = printCourse ? `Visual English Lab — ${printCourse.levelFrom} to ${printCourse.levelTo}` : toolkit ? `${toolkit.title} · Visual English Lab` : lesson ? `${lesson.card.title} · Visual English Lab` : course ? `${course.title} · Visual English Lab` : 'Visual English Lab';
   useEffect(() => {
     document.title = pageTitle;
   }, [pageTitle]);
@@ -32,13 +33,7 @@ export function App() {
 
   if (pathname === '/') return <PlatformHome />;
   if (toolkit) return <ToolkitPage route={toolkit} location={location} />;
-  if (pathname === '/print' || pathname === '/print/') return <>
-    <div className="print-toolbar no-print"><a className="button" href={coursePath(beginnerB2Course)}>← К курсу</a><button className="button button--primary" onClick={() => window.print()}>Печать / сохранить PDF</button></div>
-    <main className="print-stack" aria-label="Все карточки курса">{beginnerB2Course.cards.map((card) => {
-      const Card = card.component;
-      return <Card key={card.id} />;
-    })}</main>
-  </>;
+  if (printCourse) return <CoursePrint course={printCourse} />;
 
   if (lesson) {
     const { card, course: currentCourse } = lesson;
@@ -46,7 +41,7 @@ export function App() {
     if (isExport) return <main className="export-root"><Card /></main>;
     return <CardViewer key={currentCourse.id} course={currentCourse} card={card} navigate={navigate}><Card /></CardViewer>;
   }
-  if (course) return course.status === 'available' ? <CourseOverview course={course} /> : <ComingSoon course={course} />;
+  if (course) return course.status === 'available' || course.cards.length > 0 ? <CourseOverview course={course} /> : <ComingSoon course={course} />;
   const isCard = pathname.includes('/cards/') || pathname.startsWith('/cards/');
   const parent = getCourseBySlug(pathname.split('/')[2] ?? '');
   return <main className="not-found"><h1>{isCard ? 'Карточка не найдена' : 'Курс не найден'}</h1><p>Выберите курс и карточку, чтобы продолжить обучение.</p><a className="button" href={parent ? coursePath(parent) : '/'}>{parent ? 'К курсу →' : 'Все курсы →'}</a></main>;

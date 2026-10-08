@@ -1,9 +1,9 @@
 import type { CourseProgressData } from '../progress/progressTypes';
 import { getCardById } from './courseRegistry';
 import { courseCardPath } from './coursePaths';
-import type { AvailableCourse } from './courseTypes';
+import type { Course } from './courseTypes';
 
-export function getCourseResume(course: AvailableCourse, progress: CourseProgressData) {
+export function getCourseResume(course: Course, progress: CourseProgressData) {
   const complete = course.cards.length > 0 && course.cards.every((card) => progress.completedCardIds.includes(card.id));
   const hasProgress = progress.lastViewedCardId !== null || progress.completedCardIds.length > 0;
   const last = progress.lastViewedCardId === null ? undefined : getCardById(course, progress.lastViewedCardId);
